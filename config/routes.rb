@@ -1,5 +1,9 @@
 Quidnotes::Application.routes.draw do
+  devise_for :users
+
   resources :universities
+
+  root to:'universities#index'
 
 
   # The priority is based upon order of creation:
