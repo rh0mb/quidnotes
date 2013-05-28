@@ -1,10 +1,11 @@
 Quidnotes::Application.routes.draw do
   resources :listings
+  resources :universities
 
 
   devise_for :users
 
-  resources :universities
+  get "/unis" => "listings#unis"
 
   root to:'listings#index'
 

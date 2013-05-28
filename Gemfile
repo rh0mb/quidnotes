@@ -10,7 +10,14 @@ gem 'devise'
 gem 'simple_form'
 gem 'money-rails'
 
-gem 'sqlite3'
+group :development, :test do
+	gem 'sqlite3'
+end
+
+group :production do
+	gem "pg"
+	gem 'rack-google-analytics', :require => 'rack/google-analytics'
+end
 
 
 # Gems used only for assets and not required

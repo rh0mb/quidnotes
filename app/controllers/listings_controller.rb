@@ -11,6 +11,15 @@ class ListingsController < ApplicationController
     end
   end
 
+  def unis
+    @universities = University.all
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @listings }
+    end
+  end
+
   # GET /listings/1
   # GET /listings/1.json
   def show
