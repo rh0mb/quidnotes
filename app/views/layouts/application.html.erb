@@ -5,12 +5,68 @@
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-<body>
-	
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
-<%= yield %>
+  <body>
 
-</body>
+  	<div class="navbar-wrapper">
+      <div class="container">
+        <div class="navbar navbar-inverse">
+          <div class="navbar-inner">
+            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+              <a href="<%= '/' %>" class="brand">NotesPub</a>
+              <!-- Responsive Navbar Part 2: Place all navbar contents you want collapsed withing .navbar-collapse.collapse. -->
+              <div class="nav-collapse collapse">
+                <ul class="nav">
+                  <li><%= link_to "Mercado", listings_path %></li>
+                  <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">¿Cómo funciona? <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                      <li><a href="<%= '/#productor' %>">Productor</a></li>
+                      <li><a href="<%= '/#comprador' %>">Comprador</a></li>
+                      <li class="divider"></li>
+                      <li class="nav-header">Extras</li>
+                      <li><a href="/#funciona">Transacción</a></li>
+                    </ul>
+                  </li>
+                  <li><a href="<%= '/contact' %>">Contacto</a></li>
+                </ul>
+                <ul class="nav pull-right"> 
+                  <% if user_signed_in? %>
+                    <li><a href="<%= '/#productor' %>"><%= current_user.user_name %></a></li>
+                       
+                    <li><%= link_to "Log Out", destroy_user_session_path, method: :delete %></li>
+                  <% else %>
+                    <li><%= link_to "Sign Up", new_user_registration_path %></li>
+                    <li><%= link_to "Sign In", new_user_session_path %></li>
+                  <% end %>
+                </ul>
+              </div><!--/.nav-collapse -->
+            </div><!-- /.navbar-inner -->
+          </div><!-- /.navbar -->
+
+        </div> <!-- /.container -->
+      <div class="container">
+        <% flash.each do |type, message| %>
+        <div class="alert <%= flash_class type %>">
+          <button class="close" data-dismiss="alert">x</button>
+          <%= message %>
+        </div>
+        <% end %>
+       </div>
+    </div><!-- /.navbar-wrapper -->
+    <%= yield %>
+
+    <footer>
+  		<div class="container">
+  		  <hr>
+  			<p>&copy; NotesPub 2013 <!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="<%= '/privacy' %>">Aviso de Privacidad</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a data-toggle="modal" href="#tos" >Términos de Uso</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; (55) 5243 8935 --></p>
+  		</div>
+  	</footer>
+  </body>
 </html>
+

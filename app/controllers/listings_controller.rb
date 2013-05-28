@@ -1,4 +1,5 @@
 class ListingsController < ApplicationController
+  before_filter :authenticate_user!, only: [:new, :create, :edit, :update]
   # GET /listings
   # GET /listings.json
   def index
@@ -40,7 +41,8 @@ class ListingsController < ApplicationController
   # POST /listings
   # POST /listings.json
   def create
-    @listing = Listing.new(params[:listing])
+    @listing = current_user.listings.new(params[:listing])
+    @user = current_user
 
     respond_to do |format|
       if @listing.save
