@@ -6,7 +6,7 @@ Quidnotes::Application.routes.draw do
 
   resources :universities
 
-  root to:'universities#index'
+  root to:'listings#index'
 
 
   # The priority is based upon order of creation:

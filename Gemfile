@@ -7,6 +7,7 @@ gem 'rails', '3.2.12'
 
 gem 'bootstrap-sass'
 gem 'devise'
+gem 'simple_form'
 
 gem 'sqlite3'
 
